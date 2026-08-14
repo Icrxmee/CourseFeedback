@@ -43,11 +43,15 @@ for i in range(quantidade_perguntas):
                             }
     pesquisa['perguntas'].append(pergunta)
 
-for i, pergunta in enumerate(pesquisa['perguntas'], start=1):
-    print(f'{i}. {pergunta["texto"]}')
-    print(f'Tipo: {pergunta["tipo"]["nome"]}')
-    print(f'Opções: {pergunta["tipo"]["opcoes"]}')
-    
+for numero_pergunta, pergunta in enumerate(pesquisa['perguntas'], start=1):
+    print(f'Pergunta {numero_pergunta}:')
+    print(f"{pergunta["texto"]}")
+
+    percorrer_opcoes = pergunta["tipo"]["opcoes"]
+    print(f"Opções:")
+
+    for numero_opcao, opcao in enumerate(percorrer_opcoes, start=1):
+        print(f"{numero_opcao}. {opcao}")
 
 
         
