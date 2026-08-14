@@ -35,14 +35,19 @@ for i in range(quantidade_perguntas):
         if tipo in tipo_perguntas:
             break
         print("Opção inválida, tente novamente!")
-            
-
+    
     tipo = tipo_perguntas[tipo]
     pergunta = {
             "texto": texto_pergunta,
             "tipo": tipo
                             }
-
     pesquisa['perguntas'].append(pergunta)
-print(pesquisa)
+
+for i, pergunta in enumerate(pesquisa['perguntas'], start=1):
+    print(f'{i}. {pergunta["texto"]}')
+    print(f'Tipo: {pergunta["tipo"]["nome"]}')
+    print(f'Opções: {pergunta["tipo"]["opcoes"]}')
+    
+
+
         
