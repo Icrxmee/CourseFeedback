@@ -16,7 +16,8 @@ professor = input("Nome do Professor:")
 pesquisa = {
     "curso": curso,
     "professor": professor,
-    "perguntas": []
+    "perguntas": [],
+    "respostas": []
 }
 
 quantidade_perguntas = int(input("Digite quantas perguntas deseja realizar: "))
@@ -43,15 +44,42 @@ for i in range(quantidade_perguntas):
                             }
     pesquisa['perguntas'].append(pergunta)
 
-for numero_pergunta, pergunta in enumerate(pesquisa['perguntas'], start=1):
-    print(f'Pergunta {numero_pergunta}:')
-    print(f"{pergunta["texto"]}")
 
-    percorrer_opcoes = pergunta["tipo"]["opcoes"]
-    print(f"Opções:")
+quantidade_alunos = int(input("Digite quantos alunos irão responder a pesquisa:"))
 
-    for numero_opcao, opcao in enumerate(percorrer_opcoes, start=1):
-        print(f"{numero_opcao}. {opcao}")
+for i in range(quantidade_alunos):
+    nome = input("Digite seu nome: ")
+    respostas_aluno = []
 
+    for numero_pergunta, pergunta in enumerate(pesquisa['perguntas'], start=1):
+        print(f'Pergunta {numero_pergunta}:')
+        print(f"{pergunta["texto"]}")
 
+        percorrer_opcoes = pergunta["tipo"]["opcoes"]
+        print(f"Opções:")
+
+        for numero_opcao, opcao in enumerate(percorrer_opcoes, start=1):
+            print(f"{numero_opcao}. {opcao}")
+
+        while True:
+            resposta_aluno = input("Selecione sua resposta:")
+
+            if resposta_aluno.isdigit():
+                indice = int(resposta_aluno) - 1
+
+                if 0 <= indice < len(percorrer_opcoes):
+                    break
         
+            print("Opção inválida, tente novamente!")
+        resposta = percorrer_opcoes[indice]
+
+        resposta_aluno = {
+            "nome": nome,
+            "pergunta": numero_pergunta,
+            "resposta": resposta
+        }
+
+        respostas_aluno.append(resposta_aluno)
+    pesquisa["respostas"].append(respostas_aluno)
+
+print(pesquisa["respostas"])
