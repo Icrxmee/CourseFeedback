@@ -44,8 +44,13 @@ for i in range(quantidade_perguntas):
                             }
     pesquisa['perguntas'].append(pergunta)
 
+while True:
+    quantidade_alunos = input("Digite quantos alunos irão responder a pesquisa:")
 
-quantidade_alunos = int(input("Digite quantos alunos irão responder a pesquisa:"))
+    if quantidade_alunos.isdigit():
+        quantidade_alunos = int(quantidade_alunos)
+        break
+    print("Opção inválida, escreva um valor numérico!")
 
 for i in range(quantidade_alunos):
     nome = input("Digite seu nome: ")
@@ -82,4 +87,10 @@ for i in range(quantidade_alunos):
         respostas_aluno.append(resposta_aluno)
     pesquisa["respostas"].append(respostas_aluno)
 
-print(pesquisa["respostas"])
+contador = 0
+
+for respostas_aluno in pesquisa["respostas"]:
+
+    for resposta in respostas_aluno:
+        if resposta["resposta"] == "Sim":
+            contador += 1
