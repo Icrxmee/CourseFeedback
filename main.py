@@ -87,10 +87,70 @@ for i in range(quantidade_alunos):
         respostas_aluno.append(resposta_aluno)
     pesquisa["respostas"].append(respostas_aluno)
 
-contador = 0
 
-for respostas_aluno in pesquisa["respostas"]:
+for numero_pergunta, pergunta in enumerate(pesquisa["perguntas"], start=1):
 
-    for resposta in respostas_aluno:
-        if resposta["resposta"] == "Sim":
-            contador += 1
+    contador_sim = 0
+    contador_não = 0
+    nota_1 = 0
+    nota_2 = 0
+    nota_3 = 0
+    nota_4 = 0
+    nota_5 = 0
+
+    for respostas_aluno in pesquisa["respostas"]:
+
+        for resposta in respostas_aluno:
+
+            if pergunta['tipo']['nome'] == "Sim_Nao":
+
+                if resposta["pergunta"] == numero_pergunta:
+                    
+                    if resposta["resposta"] == "Sim":
+                        contador_sim += 1
+
+                    if resposta["resposta"] == "Não":
+                        contador_não += 1
+
+            if pergunta['tipo']['nome'] == 'Nota':
+
+                if resposta["pergunta"] == numero_pergunta:
+
+                    if resposta["resposta"] == 1:
+                        nota_1 += 1
+
+                    if resposta["resposta"] == 2:
+                        nota_2 += 1
+
+                    if resposta["resposta"] == 3:
+                        nota_3 += 1
+
+                    if resposta["resposta"] == 4:
+                        nota_4 += 1
+
+                    if resposta["resposta"] == 5:
+                        nota_5 += 1
+
+
+    if pergunta['tipo']['nome'] == 'Sim_Nao':
+
+        porcentagem_sim = (contador_sim / quantidade_alunos) * 100
+        porcentagem_nao = (contador_não / quantidade_alunos) * 100
+
+        print(f"pergunta: {pergunta['texto']}")
+        print(f"Sim: {contador_sim} ({porcentagem_sim:.1f}%)")
+        print(f"Não: {contador_não} ({porcentagem_nao:.1f}%)")
+
+    elif pergunta['tipo']['nome'] == 'Nota':
+
+        porcentagem_nota1 = (nota_1 / quantidade_alunos) * 100
+        porcentagem_nota2 = (nota_2 / quantidade_alunos) * 100
+        porcentagem_nota3 = (nota_3 / quantidade_alunos) * 100
+        porcentagem_nota4 = (nota_4 / quantidade_alunos) * 100
+        porcentagem_nota5 = (nota_5 / quantidade_alunos) * 100
+
+        print(f"Nota 1: {nota_1} ({porcentagem_nota1:.1f}%)")
+        print(f"Nota 2: {nota_2} ({porcentagem_nota2:.1f}%)")
+        print(f"Nota 3: {nota_3} ({porcentagem_nota3:.1f}%)")
+        print(f"Nota 4: {nota_4} ({porcentagem_nota4:.1f}%)")
+        print(f"Nota 5: {nota_5} ({porcentagem_nota5:.1f}%)")
