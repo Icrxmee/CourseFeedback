@@ -1,4 +1,4 @@
-from funcoes.funcoes import *
+from funcoes.funcoes import *  
 
 tipo_perguntas = {
     '1': {'nome':'Sim_Nao',
@@ -21,28 +21,7 @@ pesquisa = {
 }
 
 quantidade_perguntas = int(input("Digite quantas perguntas deseja realizar: "))
-
-for i in range(quantidade_perguntas):
-    print(f"Pergunta {i + 1}:")
-    texto_pergunta = input("Escreva a pergunta que deseja fazer: ")
-
-    print("Tipos de Perguntas")
-    for numero, tipo in tipo_perguntas.items():
-        print(f"{numero} {tipo['nome']}")
-
-    while True:
-        tipo = input("Selecione o número do tipo:")
-
-        if tipo in tipo_perguntas:
-            break
-        print("Opção inválida, tente novamente!")
-    
-    tipo = tipo_perguntas[tipo]
-    pergunta = {
-            "texto": texto_pergunta,
-            "tipo": tipo
-                            }
-    pesquisa['perguntas'].append(pergunta)
+pesquisa = cadastro_perguntas(quantidade_perguntas, pesquisa, tipo_perguntas)
 
 while True:
     quantidade_alunos = input("Digite quantos alunos irão responder a pesquisa:")
