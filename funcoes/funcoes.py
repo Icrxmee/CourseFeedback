@@ -76,27 +76,31 @@ def gerar_relatorios(pesquisa, quantidade_alunos):
 
         contadores = contar_respostas(pergunta, numero_pergunta, pesquisa['respostas'])     
 
+
         if pergunta['tipo']['nome'] == 'Sim_Nao':
 
-            porcentagem_sim = (contadores["Sim"] / quantidade_alunos) * 100
-            porcentagem_nao = (contadores["Não"] / quantidade_alunos) * 100
+            porcentagens = calcular_porcentagem(contadores, quantidade_alunos)
 
             print(f"pergunta: {pergunta['texto']}")
-            print(f"Sim: {contadores["Sim"]} ({porcentagem_sim:.1f}%)")
-            print(f"Não: {contadores["Não"]} ({porcentagem_nao:.1f}%)")
+
+            print(f"Sim: {contadores['Sim']}"
+            f"({porcentagens['Sim']:.1f}%)")
+
+            print(f"Não: {contadores['Não']}"
+            f"({porcentagens['Não']:.1f}%)")
 
         elif pergunta['tipo']['nome'] == 'Nota':
+
+            porcentagens = calcular_porcentagem(contadores, quantidade_alunos)
 
             print(f"pergunta: {pergunta['texto']}")
 
             for nota in pergunta['tipo']["opcoes"]:
 
-                porcentagem = (contadores[nota] / quantidade_alunos ) * 100
-
                 print(
                     f"Nota {nota}: "
                     f"{contadores[nota]} "
-                    f"({porcentagem:.1f}%)"
+                    f"({porcentagens[nota]:.1f}%)"
                 )
 
 def contar_respostas(pergunta, numero_pergunta, respostas):
@@ -117,4 +121,14 @@ def contar_respostas(pergunta, numero_pergunta, respostas):
 
     return contadores
 
-    
+def calcular_porcentagem(contadores, quantidade_alunos):
+
+    porcentagens = {}
+
+    for opcao, quantidade in contadores.items():
+
+        porcentagem = (quantidade / quantidade_alunos) * 100
+
+        porcentagens[opcao] = porcentagem
+
+    return porcentagens
