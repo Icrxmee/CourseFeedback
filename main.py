@@ -10,8 +10,8 @@ tipo_perguntas = {
 
 tela_inicial_terminal()
 
-curso = input("Nome do Curso:")
-professor = input("Nome do Professor:")
+curso = solicitar_texto("Nome do Curso: ")
+professor = solicitar_texto("Nome do Professor: ")
 
 pesquisa = {
     "curso": curso,
@@ -20,17 +20,10 @@ pesquisa = {
     "respostas": []
 }
 
-quantidade_perguntas = int(input("Digite quantas perguntas deseja realizar: "))
+quantidade_perguntas = solicitar_numero("Digite quantas perguntas deseja realizar: ")
 pesquisa = cadastro_perguntas(quantidade_perguntas, pesquisa, tipo_perguntas)
 
-quantidade_alunos = input("Digite quantos alunos irão responder a pesquisa:")
-
-while True: 
-    if quantidade_alunos.isdigit():
-        quantidade_alunos = int(quantidade_alunos)
-        break
-
-    print("Opção inválida, escreva um valor numérico!")
+quantidade_alunos = solicitar_numero("Digite quantos alunos irão responder a pesquisa: ")
 
 coletar_respostas(quantidade_alunos, pesquisa)
 

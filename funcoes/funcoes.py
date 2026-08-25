@@ -3,11 +3,38 @@ def tela_inicial_terminal():
     print("SISTEMA DE AVALIAÇÃO DE CURSO")
     print("=" * 40)
 
+def solicitar_numero(mensagem):
+
+    while True:
+
+        valor = input(mensagem)
+
+        if valor.isdigit():
+
+            valor = int(valor)
+
+            if valor > 0:
+
+                return valor
+
+        print("Opção inválida! Escreva um número maior que zero.")
+
+def solicitar_texto(mensagem):
+
+    while True:
+
+        texto = input(mensagem)
+
+        if texto.strip():
+            return texto
+
+        print("Opção inválida! Esse campo não pode ficar vazio.")
+
 def cadastro_perguntas(quantidade_perguntas, pesquisa, tipo_perguntas):
 
     for i in range(quantidade_perguntas):
         print(f"Pergunta {i + 1}:")
-        texto_pergunta = input("Escreva a pergunta que deseja fazer: ")
+        texto_pergunta = solicitar_texto("Escreva a pergunta que deseja fazer: ")
 
         print("Tipos de Perguntas")
 
