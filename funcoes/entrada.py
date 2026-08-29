@@ -1,8 +1,3 @@
-def tela_inicial_terminal():
-    print("=" * 40)
-    print("SISTEMA DE AVALIAÇÃO DE CURSO")
-    print("=" * 40)
-
 def solicitar_numero(mensagem):
 
     while True:
@@ -96,66 +91,3 @@ def coletar_respostas(quantidade_alunos, pesquisa ):
             pesquisa["respostas"].append(respostas_aluno)
 
         return pesquisa
-            
-def gerar_relatorios(pesquisa, quantidade_alunos):
-
-    for numero_pergunta, pergunta in enumerate(pesquisa["perguntas"], start=1):
-
-        contadores = contar_respostas(pergunta, numero_pergunta, pesquisa['respostas'])     
-
-
-        if pergunta['tipo']['nome'] == 'Sim_Nao':
-
-            porcentagens = calcular_porcentagem(contadores, quantidade_alunos)
-
-            print(f"pergunta: {pergunta['texto']}")
-
-            print(f"Sim: {contadores['Sim']}"
-            f"({porcentagens['Sim']:.1f}%)")
-
-            print(f"Não: {contadores['Não']}"
-            f"({porcentagens['Não']:.1f}%)")
-
-        elif pergunta['tipo']['nome'] == 'Nota':
-
-            porcentagens = calcular_porcentagem(contadores, quantidade_alunos)
-
-            print(f"pergunta: {pergunta['texto']}")
-
-            for nota in pergunta['tipo']["opcoes"]:
-
-                print(
-                    f"Nota {nota}: "
-                    f"{contadores[nota]} "
-                    f"({porcentagens[nota]:.1f}%)"
-                )
-
-def contar_respostas(pergunta, numero_pergunta, respostas):
-
-    contadores = {}
-
-    for opcao in pergunta["tipo"]["opcoes"]:
-        contadores[opcao] = 0 
-
-    for respostas_aluno in respostas:
-
-        for resposta in respostas_aluno:
-
-            if resposta["pergunta"] == numero_pergunta:
-
-                contadores[resposta["resposta"]] += 1 
-
-
-    return contadores
-
-def calcular_porcentagem(contadores, quantidade_alunos):
-
-    porcentagens = {}
-
-    for opcao, quantidade in contadores.items():
-
-        porcentagem = (quantidade / quantidade_alunos) * 100
-
-        porcentagens[opcao] = porcentagem
-
-    return porcentagens

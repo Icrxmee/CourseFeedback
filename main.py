@@ -1,4 +1,5 @@
-from funcoes.funcoes import *  
+from funcoes.entrada import *  
+from funcoes.relatorio import *
 
 tipo_perguntas = {
     '1': {'nome':'Sim_Nao',
