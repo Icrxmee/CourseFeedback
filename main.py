@@ -1,18 +1,13 @@
-from funcoes.entrada import *  
-from funcoes.relatorio import *
+import funcoes.entrada as entrada 
+import funcoes.relatorio as relatorio
+import funcoes.configuracao as configuracao
 
-tipo_perguntas = {
-    '1': {'nome':'Sim_Nao',
-          'opcoes': ['Sim', 'Não']},
+tipo_perguntas = configuracao.tipo_perguntas
 
-    '2': {'nome': 'Nota',
-          'opcoes': [1,2,3,4,5]}
-}
+relatorio.tela_inicial_terminal()
 
-tela_inicial_terminal()
-
-curso = solicitar_texto("Nome do Curso: ")
-professor = solicitar_texto("Nome do Professor: ")
+curso = entrada.solicitar_texto("Nome do Curso: ")
+professor = entrada.solicitar_texto("Nome do Professor: ")
 
 pesquisa = {
     "curso": curso,
@@ -21,11 +16,11 @@ pesquisa = {
     "respostas": []
 }
 
-quantidade_perguntas = solicitar_numero("Digite quantas perguntas deseja realizar: ")
-pesquisa = cadastro_perguntas(quantidade_perguntas, pesquisa, tipo_perguntas)
+quantidade_perguntas = entrada.solicitar_numero("Digite quantas perguntas deseja realizar: ")
+pesquisa = entrada.cadastro_perguntas(quantidade_perguntas, pesquisa, tipo_perguntas)
 
-quantidade_alunos = solicitar_numero("Digite quantos alunos irão responder a pesquisa: ")
+quantidade_alunos = entrada.solicitar_numero("Digite quantos alunos irão responder a pesquisa: ")
 
-coletar_respostas(quantidade_alunos, pesquisa)
+entrada.coletar_respostas(quantidade_alunos, pesquisa)
 
-gerar_relatorios(pesquisa, quantidade_alunos)
+relatorio.gerar_relatorios(pesquisa, quantidade_alunos)

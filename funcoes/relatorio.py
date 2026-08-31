@@ -1,4 +1,4 @@
-from funcoes.processamento import *
+import funcoes.processamento as processamento
 
 def tela_inicial_terminal():
     print("=" * 40)
@@ -9,12 +9,12 @@ def gerar_relatorios(pesquisa, quantidade_alunos):
 
     for numero_pergunta, pergunta in enumerate(pesquisa["perguntas"], start=1):
 
-        contadores = contar_respostas(pergunta, numero_pergunta, pesquisa['respostas'])     
+        contadores = processamento.contar_respostas(pergunta, numero_pergunta, pesquisa['respostas'])     
 
 
         if pergunta['tipo']['nome'] == 'Sim_Nao':
 
-            porcentagens = calcular_porcentagem(contadores, quantidade_alunos)
+            porcentagens = processamento.calcular_porcentagem(contadores, quantidade_alunos)
 
             print(f"pergunta: {pergunta['texto']}")
 
@@ -26,7 +26,7 @@ def gerar_relatorios(pesquisa, quantidade_alunos):
 
         elif pergunta['tipo']['nome'] == 'Nota':
 
-            porcentagens = calcular_porcentagem(contadores, quantidade_alunos)
+            porcentagens = processamento.calcular_porcentagem(contadores, quantidade_alunos)
 
             print(f"pergunta: {pergunta['texto']}")
 

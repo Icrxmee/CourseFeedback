@@ -45,6 +45,7 @@ def cadastro_perguntas(quantidade_perguntas, pesquisa, tipo_perguntas):
     
         tipo = tipo_perguntas[tipo]
         pergunta = {
+                "ID": i + 1,
                 "texto": texto_pergunta,
                 "tipo": tipo
                             }
