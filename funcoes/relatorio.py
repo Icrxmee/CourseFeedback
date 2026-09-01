@@ -7,9 +7,9 @@ def tela_inicial_terminal():
             
 def gerar_relatorios(pesquisa, quantidade_alunos):
 
-    for numero_pergunta, pergunta in enumerate(pesquisa["perguntas"], start=1):
+    for pergunta in (pesquisa["perguntas"]):
 
-        contadores = processamento.contar_respostas(pergunta, numero_pergunta, pesquisa['respostas'])     
+        contadores = processamento.contar_respostas(pergunta, pesquisa['respostas'])     
 
 
         if pergunta['tipo']['nome'] == 'Sim_Nao':

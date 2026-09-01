@@ -1,4 +1,4 @@
-def contar_respostas(pergunta, numero_pergunta, respostas):
+def contar_respostas(pergunta, respostas):
 
     contadores = {}
 
@@ -9,7 +9,7 @@ def contar_respostas(pergunta, numero_pergunta, respostas):
 
         for resposta in respostas_aluno:
 
-            if resposta["pergunta"] == numero_pergunta:
+            if resposta["pergunta"] == pergunta['id']:
 
                 contadores[resposta["resposta"]] += 1 
 

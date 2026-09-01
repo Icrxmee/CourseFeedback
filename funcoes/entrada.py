@@ -45,7 +45,7 @@ def cadastro_perguntas(quantidade_perguntas, pesquisa, tipo_perguntas):
     
         tipo = tipo_perguntas[tipo]
         pergunta = {
-                "ID": i + 1,
+                "id": i + 1,
                 "texto": texto_pergunta,
                 "tipo": tipo
                             }
@@ -83,7 +83,7 @@ def coletar_respostas(quantidade_alunos, pesquisa ):
 
                 resposta_aluno = {
                     "nome": nome,
-                    "pergunta": numero_pergunta,
+                    "pergunta": pergunta['id'],
                     "resposta": resposta
                 }
 
