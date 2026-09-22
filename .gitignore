@@ -1,0 +1,8 @@
+# Arquivos Python gerados automaticamente (não versionar)
+__pycache__/
+*.pyc
+*.pyo
+
+# Ambientes virtuais
+venv/
+.env/
