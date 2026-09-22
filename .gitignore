@@ -6,3 +6,6 @@ __pycache__/
 # Ambientes virtuais
 venv/
 .env/
+
+# Dados da pesquisa (gerados pelo usuário, não são código)
+pesquisa.json
