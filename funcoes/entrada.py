@@ -43,7 +43,8 @@ def cadastro_perguntas(quantidade_perguntas, pesquisa, tipo_perguntas):
                 break
             print("Opção inválida, tente novamente!")
     
-        tipo = tipo_perguntas[tipo]
+        tipo = dict(tipo_perguntas[tipo])
+        tipo['opcoes'] = list(tipo['opcoes'])
         pergunta = {
                 "id": i + 1,
                 "texto": texto_pergunta,
