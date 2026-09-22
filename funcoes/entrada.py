@@ -58,8 +58,8 @@ def coletar_respostas(quantidade_alunos, pesquisa ):
             nome = input("Digite seu nome: ")
             respostas_aluno = []
 
-            for numero_pergunta, pergunta in enumerate(pesquisa['perguntas'], start=1):
-                print(f'Pergunta {numero_pergunta}:')
+            for pergunta in pesquisa['perguntas']:
+                print(f'Pergunta {pergunta["id"]}:')
                 print(f"{pergunta["texto"]}")
 
                 percorrer_opcoes = pergunta["tipo"]["opcoes"]
