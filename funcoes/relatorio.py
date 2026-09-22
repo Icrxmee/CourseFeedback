@@ -9,14 +9,21 @@ def gerar_relatorios(pesquisa, quantidade_alunos):
 
     for pergunta in (pesquisa["perguntas"]):
 
-        contadores = processamento.contar_respostas(pergunta, pesquisa['respostas'])
-        porcentagens = processamento.calcular_porcentagem(contadores, quantidade_alunos)
-        rotulo = pergunta['tipo'].get('rotulo', '')
-
         print(f"pergunta: {pergunta['texto']}")
 
-        for opcao in pergunta['tipo']['opcoes']:
+        if pergunta['tipo'].get('resposta_livre'):
 
-            etiqueta = f"{rotulo} {opcao}" if rotulo else str(opcao)
+            for resposta in processamento.filtrar_respostas(pergunta, pesquisa['respostas']):
+                print(f"- {resposta['nome']}: {resposta['resposta']}")
 
-            print(f"{etiqueta}: {contadores[opcao]} ({porcentagens[opcao]:.1f}%)")
+        else:
+
+            contadores = processamento.contar_respostas(pergunta, pesquisa['respostas'])
+            porcentagens = processamento.calcular_porcentagem(contadores, quantidade_alunos)
+            rotulo = pergunta['tipo'].get('rotulo', '')
+
+            for opcao in pergunta['tipo']['opcoes']:
+
+                etiqueta = f"{rotulo} {opcao}" if rotulo else str(opcao)
+
+                print(f"{etiqueta}: {contadores[opcao]} ({porcentagens[opcao]:.1f}%)")

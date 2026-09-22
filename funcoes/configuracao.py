@@ -10,6 +10,11 @@ tipo_perguntas = {
     '3': {'nome': 'Multipla',
           'rotulo': '',
           'opcoes': [],
-          'definir_opcoes': True}
+          'definir_opcoes': True},
+
+    '4': {'nome': 'Aberta',
+          'rotulo': '',
+          'opcoes': [],
+          'resposta_livre': True}
 }
 

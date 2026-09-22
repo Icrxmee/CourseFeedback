@@ -80,24 +80,28 @@ def coletar_respostas(quantidade_alunos, pesquisa ):
                 print(f'Pergunta {pergunta["id"]}:')
                 print(f"{pergunta["texto"]}")
 
-                percorrer_opcoes = pergunta["tipo"]["opcoes"]
-                print(f"Opções:")
+                if pergunta['tipo'].get('resposta_livre'):
+                    resposta = input("Sua resposta: ")
 
-                for numero_opcao, opcao in enumerate(percorrer_opcoes, start=1):
-                    print(f"{numero_opcao}. {opcao}")
+                else:
+                    percorrer_opcoes = pergunta["tipo"]["opcoes"]
+                    print(f"Opções:")
 
-                while True:
-                    resposta_aluno = input("Selecione sua resposta:")
+                    for numero_opcao, opcao in enumerate(percorrer_opcoes, start=1):
+                        print(f"{numero_opcao}. {opcao}")
 
-                    if resposta_aluno.isdigit():
-                        indice = int(resposta_aluno) - 1
+                    while True:
+                        resposta_aluno = input("Selecione sua resposta:")
 
-                        if 0 <= indice < len(percorrer_opcoes):
-                            break
-                
-                    print("Opção inválida, tente novamente!")
+                        if resposta_aluno.isdigit():
+                            indice = int(resposta_aluno) - 1
 
-                resposta = percorrer_opcoes[indice]
+                            if 0 <= indice < len(percorrer_opcoes):
+                                break
+
+                        print("Opção inválida, tente novamente!")
+
+                    resposta = percorrer_opcoes[indice]
 
                 resposta_aluno = {
                     "nome": nome,
