@@ -45,6 +45,23 @@ def cadastro_perguntas(quantidade_perguntas, pesquisa, tipo_perguntas):
     
         tipo = dict(tipo_perguntas[tipo])
         tipo['opcoes'] = list(tipo['opcoes'])
+
+        if tipo.pop('definir_opcoes', False):
+            quantidade_opcoes = solicitar_numero("Quantas opções a pergunta terá? ")
+
+            while quantidade_opcoes < 2:
+                print("A pergunta precisa de pelo menos 2 opções.")
+                quantidade_opcoes = solicitar_numero("Quantas opções a pergunta terá? ")
+
+            for numero_opcao in range(quantidade_opcoes):
+                opcao = solicitar_texto(f"Escreva a opção {numero_opcao + 1}: ")
+
+                while opcao in tipo['opcoes']:
+                    print("Opção já cadastrada, escolha outra.")
+                    opcao = solicitar_texto(f"Escreva a opção {numero_opcao + 1}: ")
+
+                tipo['opcoes'].append(opcao)
+
         pergunta = {
                 "id": i + 1,
                 "texto": texto_pergunta,

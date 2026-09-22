@@ -5,6 +5,11 @@ tipo_perguntas = {
 
     '2': {'nome': 'Nota',
           'rotulo': 'Nota',
-          'opcoes': [1,2,3,4,5]}
+          'opcoes': [1,2,3,4,5]},
+
+    '3': {'nome': 'Multipla',
+          'rotulo': '',
+          'opcoes': [],
+          'definir_opcoes': True}
 }
 
