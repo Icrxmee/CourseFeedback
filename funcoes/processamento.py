@@ -1,3 +1,17 @@
+def filtrar_respostas(pergunta, respostas):
+
+    filtradas = []
+
+    for respostas_aluno in respostas:
+
+        for resposta in respostas_aluno:
+
+            if resposta["pergunta"] == pergunta["id"]:
+
+                filtradas.append(resposta)
+
+    return filtradas
+
 def contar_respostas(pergunta, respostas):
 
     contadores = {}
@@ -5,13 +19,9 @@ def contar_respostas(pergunta, respostas):
     for opcao in pergunta["tipo"]["opcoes"]:
         contadores[opcao] = 0 
 
-    for respostas_aluno in respostas:
+    for resposta in filtrar_respostas(pergunta, respostas):
 
-        for resposta in respostas_aluno:
-
-            if resposta["pergunta"] == pergunta['id']:
-
-                contadores[resposta["resposta"]] += 1 
+        contadores[resposta["resposta"]] += 1 
 
 
     return contadores
