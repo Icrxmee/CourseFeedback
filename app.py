@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 import funcoes.persistencia as persistencia
 
@@ -7,23 +7,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def inicio():
+    pesquisa = None
+
     if persistencia.existe_pesquisa():
         pesquisa = persistencia.carregar_pesquisa()
-        resumo = (
-            f"Curso: {pesquisa['curso']} | "
-            f"Professor: {pesquisa['professor']} | "
-            f"Perguntas: {len(pesquisa['perguntas'])} | "
-            f"Respostas de alunos: {len(pesquisa['respostas'])}"
-        )
-    else:
-        resumo = ("Nenhuma pesquisa criada ainda. "
-                  "Crie uma pelo terminal: python main.py")
 
-    return (
-        "<h1>CourseFeedback</h1>"
-        "<p>Sistema de avaliação de curso</p>"
-        f"<p>{resumo}</p>"
-    )
+    return render_template("index.html", pesquisa=pesquisa)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block titulo %}Início — CourseFeedback{% endblock %}
+
+{% block conteudo %}
+  <h1>Avaliação de curso</h1>
+
+  {% if pesquisa %}
+    <section class="cartao">
+      <h2>{{ pesquisa['curso'] }}</h2>
+      <p class="destaque">Professor: {{ pesquisa['professor'] }}</p>
+
+      <ul class="estatisticas">
+        <li><strong>{{ pesquisa['perguntas']|length }}</strong> perguntas</li>
+        <li><strong>{{ pesquisa['respostas']|length }}</strong> respostas de alunos</li>
+      </ul>
+
+      <p class="acoes">
+        <a class="botao" href="#">Responder pesquisa</a>
+        <a class="botao botao-secundario" href="#">Ver relatório</a>
+      </p>
+    </section>
+  {% else %}
+    <section class="cartao aviso">
+      <h2>Nenhuma pesquisa criada ainda</h2>
+      <p>Crie uma pesquisa pelo terminal:</p>
+      <pre>python main.py</pre>
+    </section>
+  {% endif %}
+{% endblock %}

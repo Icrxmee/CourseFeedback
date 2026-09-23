@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}CourseFeedback{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topo">
+    <div class="conteudo-topo">
+      <a class="marca" href="{{ url_for('inicio') }}">CourseFeedback</a>
+      <nav>
+        <a href="{{ url_for('inicio') }}">Início</a>
+        <a href="#">Responder</a>
+        <a href="#">Relatório</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pagina">
+    {% block conteudo %}{% endblock %}
+  </main>
+
+  <footer class="rodape">Sistema de avaliação de curso</footer>
+</body>
+</html>
