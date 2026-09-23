@@ -1,0 +1,11 @@
+# Nada disso deve entrar na imagem de produção
+.git
+.gitignore
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Dados de runtime — cada ambiente carrega o seu
+# (o pesquisa_exemplo.json ENTRA e vira semente na primeira execução)
+pesquisa.json
