@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block titulo %}Obrigado — CourseFeedback{% endblock %}
+
+{% block conteudo %}
+  <section class="cartao">
+    <h1>Obrigado pela sua participação!</h1>
+    <p class="destaque">Suas respostas foram registradas.</p>
+    <p class="acoes">
+      <a class="botao" href="{{ url_for('responder') }}">Responder de novo</a>
+      <a class="botao botao-secundario" href="{{ url_for('inicio') }}">Início</a>
+    </p>
+  </section>
+{% endblock %}

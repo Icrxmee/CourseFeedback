@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block titulo %}Responder — CourseFeedback{% endblock %}
+
+{% block conteudo %}
+  <h1>Responder pesquisa</h1>
+  <p class="destaque">{{ pesquisa['curso'] }} — Professor: {{ pesquisa['professor'] }}</p>
+
+  {% if erros %}
+    <section class="cartao erro">
+      <h2>Corrija os itens abaixo</h2>
+      <ul>
+        {% for erro in erros %}
+          <li>{{ erro }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  <form class="cartao formulario" method="POST" action="{{ url_for('enviar_resposta') }}">
+    <label class="campo">
+      <span>Seu nome</span>
+      <input type="text" name="nome" value="{{ form.get('nome', '') }}"
+             placeholder="Como você se chama" required>
+    </label>
+
+    {% for pergunta in pesquisa['perguntas'] %}
+      <fieldset class="pergunta">
+        <legend>{{ pergunta['id'] }}. {{ pergunta['texto'] }}</legend>
+
+        {% if pergunta['tipo'].get('resposta_livre') %}
+          <textarea name="p_{{ pergunta['id'] }}" rows="3"
+                    placeholder="Escreva sua resposta"></textarea>
+        {% else %}
+          {% for opcao in pergunta['tipo']['opcoes'] %}
+            <label class="opcao">
+              <input type="radio" name="p_{{ pergunta['id'] }}"
+                     value="{{ loop.index }}" required>
+              {{ opcao }}
+            </label>
+          {% endfor %}
+        {% endif %}
+      </fieldset>
+    {% endfor %}
+
+    <button class="botao" type="submit">Enviar respostas</button>
+  </form>
+{% endblock %}
