@@ -8,6 +8,11 @@ import funcoes.relatorio as relatorio
 
 app = Flask(__name__)
 
+# Primeira execução num ambiente novo (ex.: servidor recém-criado).
+# Ainda não existe cadastro de pesquisa pelo web, então semeamos o
+# exemplo — assim o link público nunca cai numa tela vazia.
+persistencia.semear()
+
 # Garante que "ler - anexar - salvar" aconteça por vez, sem
 # duas respostas simultâneas se sobrescreverem.
 _trava = threading.Lock()
