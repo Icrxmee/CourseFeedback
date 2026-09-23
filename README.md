@@ -103,7 +103,15 @@ venv\Scripts\pip install -r requirements.txt    # Linux/macOS: venv/bin/pip
 # 2. subir o servidor (crie antes uma pesquisa: python main.py)
 venv\Scripts\python app.py                      # Linux/macOS: venv/bin/python
 # abra http://127.0.0.1:5000
+
+# desenvolvimento com auto-reload (opcional; em produção fica desligado)
+FLASK_DEBUG=1 venv\Scripts\python app.py
 ```
+
+> **Quer colocar no ar?** Veja o passo a passo em
+> [docs/hospedagem.md](docs/hospedagem.md) — túnel temporário
+> (`cloudflared`) ou hospedagem permanente (Render, PythonAnywhere,
+> Docker) já com tudo preparado no repositório.
 
 > **Dica (OneDrive/nuvem):** se a pasta do projeto for sincronizada, crie a venv foradela — `python -m venv C:\caminho\fora_do_onedrive` — e use esse caminho no lugar de `venv\...`. Milhares de arquivos de terceiros não precisam subir para a nuvem; o `requirements.txt` recria tudo em segundos.
 
