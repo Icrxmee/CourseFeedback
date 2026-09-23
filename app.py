@@ -1,3 +1,4 @@
+import os
 import threading
 
 from flask import Flask, render_template, request, redirect, url_for
@@ -113,5 +114,10 @@ def _validar(form, pesquisa):
 
 
 if __name__ == "__main__":
-    # debug=True apenas em desenvolvimento: recarrega ao salvar e mostra erros
-    app.run(debug=True, port=5000)
+    # Produção NUNCA usa debug: o console do Werkzeug é de execução remota.
+    # Desenvolvimento: FLASK_DEBUG=1 python app.py
+    debug = os.environ.get("FLASK_DEBUG", "0") == "1"
+    porta = int(os.environ.get("PORT", "5000"))
+    host = os.environ.get("HOST", "127.0.0.1")
+
+    app.run(host=host, port=porta, debug=debug)
