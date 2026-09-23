@@ -3,6 +3,7 @@ import threading
 from flask import Flask, render_template, request, redirect, url_for
 
 import funcoes.persistencia as persistencia
+import funcoes.relatorio as relatorio
 
 app = Flask(__name__)
 
@@ -49,6 +50,17 @@ def enviar_resposta():
         persistencia.salvar_pesquisa(pesquisa)
 
     return redirect(url_for("obrigado"))
+
+
+@app.route("/relatorio")
+def relatorio_web():
+    if not persistencia.existe_pesquisa():
+        return redirect(url_for("inicio"))
+
+    pesquisa = persistencia.carregar_pesquisa()
+    secoes = relatorio.montar_relatorio(pesquisa)
+
+    return render_template("relatorio.html", pesquisa=pesquisa, secoes=secoes)
 
 
 @app.route("/obrigado")

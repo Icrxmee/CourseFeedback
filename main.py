@@ -21,7 +21,6 @@ if persistencia.existe_pesquisa():
 
     if opcao == '1':
         pesquisa = persistencia.carregar_pesquisa()
-        quantidade_alunos = len(pesquisa["respostas"])
 
 if pesquisa is None:
     curso = entrada.solicitar_texto("Nome do Curso: ")
@@ -44,4 +43,4 @@ if pesquisa is None:
     persistencia.salvar_pesquisa(pesquisa)
     print(f"Pesquisa salva em {persistencia.ARQUIVO}.")
 
-relatorio.gerar_relatorios(pesquisa, quantidade_alunos)
+relatorio.gerar_relatorios(pesquisa)

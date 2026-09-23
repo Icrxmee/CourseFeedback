@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block titulo %}Relatório — CourseFeedback{% endblock %}
+
+{% block conteudo %}
+  <h1>Relatório da pesquisa</h1>
+  <p class="destaque">
+    {{ pesquisa['curso'] }} — Professor: {{ pesquisa['professor'] }} —
+    {{ pesquisa['respostas']|length }} respostas
+  </p>
+
+  {% for secao in secoes %}
+    <section class="cartao secao">
+      <h2>{{ secao['pergunta']['texto'] }}</h2>
+
+      {% if secao['modo'] == 'texto' %}
+        {% if secao['respostas'] %}
+          <ul class="respostas-abertas">
+            {% for r in secao['respostas'] %}
+              <li><strong>{{ r['nome'] }}:</strong> {{ r['resposta'] or '(sem comentário)' }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="destaque">Ainda sem respostas.</p>
+        {% endif %}
+      {% else %}
+        <ul class="barras">
+          {% for linha in secao['linhas'] %}
+            <li>
+              <span class="rotulo">{{ linha['etiqueta'] }}</span>
+              <span class="trilho">
+                <span class="preenchido"
+                      style="width: {{ '%.1f'|format(linha['porcentagem']) }}%"></span>
+              </span>
+              <span class="numeros">
+                {{ linha['contagem'] }} ({{ '%.1f'|format(linha['porcentagem']) }}%)
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </section>
+  {% endfor %}
+
+  <p class="acoes">
+    <a class="botao botao-secundario" href="{{ url_for('inicio') }}">Início</a>
+  </p>
+{% endblock %}
